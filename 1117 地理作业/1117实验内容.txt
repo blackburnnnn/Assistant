@@ -1,0 +1,6 @@
+提交：《大学程序设计基础实践指导教材》
+    P49 4.2.1，4.2.2   4.2.3    
+    p60 4.4.3（打开sy4-11.py,继续完成）
+完成同学，可以预习集合和字典的相关内容
+
+提交链接：https://workspace.jianguoyun.com/inbox/collect/2e5d806dbc0848849738d86aa8a4f156/submitv2

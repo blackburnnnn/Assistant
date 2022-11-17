@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>I</title>
+<style type="text/css">
+<!--
+body {
+	line-height: 26px;
+}
+.red {
+	color: #F00;
+	font-weight: bold;
+}
+pre {
+	font-family: Consolas;
+	line-height: normal;
+	font-size: medium;
+}
+-->
+</style>
+</head>
+
+<body>
+<h2 align="center">华东师范大学&middot;《计算机与程序设计基础（A）》·期中</h2>
+<h3 align="center">2022年～2023第一学期试卷（本试卷答卷时间为 90分钟，满分100分） </h3>
+<p align="center"><strong><u>特别注意：1.考试结束后不要关机；2.操作题结果必须保存在<span class="red">c:\ecnu_ks\root\</span>中，否则没有分数。</u></strong></p>
+<p><strong>一. 选择题（每小题2分，15题 共30分）</strong></p>
+<p>登录后完成15道选择题。 </p>
+
+<p><strong>二. 程序改错题（每题10分，2题 共20分）</strong></p>
+<ol>
+  <li>在Python3环境下打开c:\ecnu_ks\root\<span class="red">bug1.py</span>程序源文件，并将其另存为&ldquo;<span class="red">ans21-学号-姓名.py</span>&rdquo;，存放在<span class="red">c:\ecnu_ks\root</span>中。按下列要求进行改错编辑，使其能正确执行。
+    <ol type="a">
+      <li>程序功能：利用循环，对用户输入的7个数字求和。</li>
+      <li>在第一行添加注释语句，注释内容为：你的学号和姓名。</li>
+      <li>程序中有二处错误（语法错误或者逻辑错误），请改正（不能增删行），使程序能正常运行并输出结果。</li>
+      <li>正确的程序运行示例如下图所示：
+        <table width="100%" border="2" cellpadding="1" cellspacing="0">
+          <tr>
+            <td><pre>
+>>> 
+请输入需要累加的整数：5
+请输入需要累加的整数：6
+请输入需要累加的整数：7
+请输入需要累加的整数：8
+请输入需要累加的整数：9
+请输入需要累加的整数：2
+请输入需要累加的整数：6
+sum= 43
+</pre></td>
+          </tr>
+        </table>
+      </li>
+    </ol>
+  </li>
+</ol>
+<ol start="2">
+  <li>在Python3环境下打开c:\ecnu_ks\root<span class="red">\bug2.py</span>程序源文件，并将其另存为&ldquo;<span class="red">ans22-学号-姓名.py</span>&rdquo;，存放在<span class="red">c:\ecnu_ks\root</span>中。按下列要求进行改错编辑，使其能正确执行。
+    <ol type="a">
+      <li>程序功能：用户输入一串字符，统计其中是否同时存在大写字母、小写字母和数字，如果存在输出“存在”。不断重复上述过程，直到用户输入“stop”</li>
+      <li>程序中有三处错误（语法错误或者逻辑错误）,请改正,使程序能正常运行并输出结果。</li>
+      <li>正确的程序运行结果如下图所示：
+        <table width="100%" border="2" cellpadding="1" cellspacing="0">
+          <tr>
+          <td><pre>&gt;&gt;&gt; 
+请输入字符串:TTTfjdskfj7687
+存在
+请输入字符串:dsuhf34
+请输入字符串:stop        
+          </pre></td>
+          </tr>
+      </table></li>
+    </ol>
+  </li>
+</ol>
+<p><strong>三. 程序填空（每题15分，1题 共15分）</strong></p>
+<ol>
+  <li> 在Python3环境下打开c:\ecnu_ks\root\<span class="red">fillblank1.py</span>程序源文件，并将其另存为&ldquo;<span class="red">ans31-学号-姓名.py</span>&rdquo;，存放在<span class="red">c:\ecnu_ks\root</span>中。 按下列要求对文件中的下划线进行填空（用填空内容代替下划线，除此之外，不能改动其它任何地方），调试并运行之。
+    <ol type="a">
+      <li>程序功能：一行12个人（其中有年轻人、老人和小孩），去一家餐厅吃自助餐花去若干元。已知自助餐的价格是每位年轻人300元，每位老人200元，每位小孩100元。输入消费金额，计算并显示年轻人、老人和小孩所有可能的组合情况。 </li>
+      <li>原始程序如下图所示：</li>
+      <table width="100%" border="2" cellpadding="1" cellspacing="0">
+          <tr>
+            <td><pre>money = int(input(&quot;请输入消费金额：&quot;))
+count=______            #count统计组合数
+for young in range(0,13):
+    for old in range(0,_________):    
+        child=12-young-old
+        if _________________________________:   
+            count+=1
+            print (&quot;第{}种情况：&quot;.format(count)_____________)  
+            print (&quot;年轻人有{}人，老人有{}人，小孩有{}人。&quot;_____________)
+
+            </pre></td>
+          </tr>
+        </table>
+      <li>程序运行结果示例如下图所示：
+        <table width="100%" border="2" cellpadding="1" cellspacing="0">
+          <tr>
+            <td><pre>&gt;&gt;&gt;
+              请输入消费金额：2800
+第1种情况： 年轻人有4人，老人有8人，小孩有0人。
+第2种情况： 年轻人有5人，老人有6人，小孩有1人。
+第3种情况： 年轻人有6人，老人有4人，小孩有2人。
+第4种情况： 年轻人有7人，老人有2人，小孩有3人。
+第5种情况： 年轻人有8人，老人有0人，小孩有4人。
+            </pre></td>
+          </tr>
+        </table><br />
+     
+    </ol>
+  
+ 
+</ol>
+<p><strong>五. 程序编写（35分，第1题15分，第2题20分）</strong></p>
+<ol>
+  <li>按照下列要求，设计完成一个程序，将程序源代码另存为&ldquo;<span class="red">ans41-学号-姓名.py</span>&rdquo;，存放在<span class="red">c:\ecnu_ks\root</span>中。
+    <ol type="a">
+    <li>程序功能：输入一个奇数，编程实现以下图形输出（循环结构实现）。如果输入偶数则加1处理</li>
+   
+           <li>程序运行结果如下图所示：
+        <table width="100%" border="2" cellpadding="1" cellspacing="0">
+          <tr>
+            <td><pre>&gt;&gt;&gt;
+请输入行数：7
+*******
+   *
+   *
+   *
+   *
+   *
+*******
+</pre></td>
+         
+        </table>
+        <br />
+      </li>
+    </ol>
+  </li>
+
+  <li>设计完成一个程序，文件将程序源代码另存为&ldquo;<span class="red">ans42-学号-姓名.py</span>&rdquo;，存放在<span class="red">c:\ecnu_ks\root</span>中。
+    <ol type="a">
+      <ol type="a">
+        <li>程序功能：</li>
+        <br />
+        机器人一开始面向正东方站立，给一串指令，例如“LRRB”（其中L表示向左转、R表示向右转、B表示向后转），机器人按照这些转向指令进行转向，最后机器人面向哪个方向？‪‬‪‬‪‬‪‬‪‬‮‬‪‬‫‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‪‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‮‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬ <br />
+        提示：用大写英文字母E,N,W,S分别表示正东、正北、正西、正南方向。‪‬‪‬‪‬‪‬‪‬‮‬‪‬‫‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‪‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‮‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬ <br />
+        输入&nbsp; 为一行，是一个由L，R，B这三个大写英文字母组成的字符串，形如LRRBBL。(提示：字符串为空表示没有任何转向指令，机器人保持原朝向。)‪‬‪‬‪‬‪‬‪‬‮‬‪‬‫‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‪‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‮‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬ <br />
+        输出&nbsp; 为一个大写英文字母（E或N或W或S），表示机器人从正东方开始，接受一串转向指令进行转向后所面向的方向。‪‬‪‬‪‬‪‬‪‬‮‬‪‬‫‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‪‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‮‬‪‬‪‬‪‬‪‬‪‬‮‬‪‬‭‬‪‬‪‬‪‬‪‬‪‬‮‬‭‬‪‬
+        <li>程序运行示例结果如下图所示：</li>
+      </ol>
+      <table width="100%" border="2" cellpadding="1" cellspacing="0">
+        <tr>
+          <td><pre>&gt;&gt;&gt;输入一串转向指令LLR<br />最后机器人面向： N
+&gt;&gt;&gt;
+            </pre></td>
+        </tr>
+      </table>
+    </ol>
+    <br />
+      
+  </li>
+</ol>
+<p class="red">注意：考试结束后千万不要关机！</p>
+</body>
+</html>

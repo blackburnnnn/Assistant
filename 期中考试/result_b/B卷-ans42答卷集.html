@@ -1,0 +1,1051 @@
+
+<html>
+<head>
+<meta charset="gbk">
+<title>
+B卷-ans42 答卷集</title>
+<style type="text/css">
+
+table {border-collapse: collapse;}
+body {font-size:100%;}
+
+.red {
+	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+	color: #FF0000;
+}
+th.red {font-family: Verdana;
+        font-size:2em;
+}
+
+pre {
+	font-family: Consolas;
+	line-height: normal;
+	font-size: medium;
+}
+.blue {
+	color: #0000FF;
+    font-weight: bolder;
+    font-size:2em;
+}
+
+ul
+{
+list-style-type:none;
+margin:0;
+padding:0;
+}
+a:link,a:visited
+{
+display:block;
+font-weight:bold;
+color:#000;
+background-color:#FFF;
+width:9em;
+text-align:left;
+padding:4px;
+text-decoration:none;
+text-transform:uppercase;
+}
+a:hover,a:active
+{
+background-color:#cc0000;
+}
+
+.refAnswer {
+	overflow: auto;
+	border: thin solid #023EFF;
+	position: fixed;
+	top: 5px;
+	left: 5px;
+	margin: 0;
+	padding: 5px;
+	height: 32%;
+	width: 48%;
+	resize:both;
+	z-index: 2;
+	background-color: #EAFCFC;
+	/*user-select:none;*/
+}
+
+.refResult {
+	overflow: auto;
+	border: thin solid #023EFF;
+	position: fixed;
+	top: 5px;
+	left: 50%;
+	right: 5px;
+	margin: 0;
+	padding: 5px;
+	height: 32%;
+	resize: vertical;
+	z-index: 1;
+	background-color: #EBF4F9;
+	/*user-select:none;*/
+}
+
+.directory {
+	overflow: auto;
+	border: thin solid #023EFF;
+	position: fixed;
+	top: 35%;
+	left: 5px;
+	margin: 0;
+	padding: 5px;
+	bottom: 5px;
+	width: 12%;
+}
+.stuAnswer {
+	position: fixed;
+	right: 5px;
+	top: 35%;
+	left: 14%;
+	padding: 5px;
+	margin: 0;
+	border: thin solid #023EFF;
+	bottom: 5px;
+	overflow: auto;
+}
+
+.bt {
+	font-size: 20px;
+	box-shadow: 5px 5px 6px #888888;
+	color:red;
+	border:thin;
+	border-radius: 35px;
+	position: fixed;
+	z-index: 3;
+	background-color: #C7E9F4;
+	cursor: pointer;
+	width: 1.5em;
+	text-align: center;
+	user-select:none;
+}
+</style>
+<script>
+var refAnswer,refResult,directory,stuAnswer,exchangeBT;
+upLeftPartHeightNew=upPartHeight=upRightPartHeightNew="32%";
+upLeftPartWidth=upLeftPartWidthNew="48%";
+
+function docOnload(){
+refAnswer=document.getElementById("refAnswerID");
+refResult=document.getElementById("refResultID");
+directory=document.getElementById("directoryID");
+stuAnswer=document.getElementById("stuAnswerID");
+exchangeBT=document.getElementById("exchangeID");
+
+}
+function pullDownUp(bt) {
+	if (refAnswer.style.visibility == "hidden"){
+		directory.style.top='35%';
+		stuAnswer.style.top='35%';
+		refAnswer.style.visibility='visible';
+		refResult.style.visibility='visible';
+		exchangeBT.style.visibility='visible';
+		bt.innerHTML="↑↑";
+	}
+	else{
+		refAnswer.style.visibility='hidden';
+		refResult.style.visibility='hidden';
+		exchangeBT.style.visibility='hidden';
+		directory.style.top="5px";
+		stuAnswer.style.top="5px";
+		bt.innerHTML="↓↓";
+	}
+}
+function pullLeftRight(bt){
+	if (directory.style.visibility=="hidden"){
+		stuAnswer.style.left="14%";
+		directory.style.visibility='visible';
+		bt.innerHTML="←";
+	}
+	else{
+		directory.style.visibility='hidden';
+		stuAnswer.style.left="5px";
+		bt.innerHTML="→";
+		}
+}
+function exchange(bt){
+	var tempStr=refAnswer.innerHTML;
+	refAnswer.innerHTML=refResult.innerHTML;
+	refResult.innerHTML=tempStr;
+}
+function dbClick(div){
+	if (div.id=="refAnswerID"){
+		if (refAnswer.style.width==upLeftPartWidth && refAnswer.style.height==upPartHeight){
+			refAnswer.style.height=upLeftPartHeightNew;
+			refAnswer.style.width=upLeftPartWidthNew;
+		}
+		else{
+			upLeftPartHeightNew=refAnswer.style.height;
+			upLeftPartWidthNew=refAnswer.style.width;
+			refAnswer.style.height=upPartHeight;
+			refAnswer.style.width=upLeftPartWidth;
+		}
+	}
+	else{
+		if (refResult.style.height==upPartHeight){
+			refResult.style.height=upRightPartHeightNew;
+		}
+		else{
+			upRightPartHeightNew=refResult.style.height;
+			refResult.style.height=upPartHeight;
+		}
+	}
+}
+</script>
+</head>
+<body onLoad="docOnload()">
+<span class="bt" style="top:0;left:48.5%;" onClick="pullDownUp(this)">↑↑</span>
+<span class="bt" style="top:33%;left:0;" onClick="pullLeftRight(this)">←</span>
+<span class="bt" id="exchangeID" style="top:0;left:0;" onClick="exchange(this)">换</span>
+<div class="refAnswer" id="refAnswerID" onDblClick="dbClick(this)"><pre>directions= 'ENWS'   #['E','N','W','S']
+nowD=0#此时机器人的朝向
+instruct=input('输入一串转向指令')#读入一串转向指令
+for i in instruct:
+    if i=='L':
+       nowD=nowD+1
+    elif i=='R':
+        nowD=nowD+3
+    else:
+        nowD=nowD+2        
+print('最后机器人面向：',directions[nowD%4])
+</pre></div>
+<div class="refResult" id="refResultID" onDblClick="dbClick(this)">
+<table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>分数</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>输入一串转向指令最后机器人面向： W
+</pre></td><th>5.0</th><th rowspan="4" class="blue">20.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>输入一串转向指令最后机器人面向： N
+</pre></td><th>5.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>输入一串转向指令最后机器人面向： N
+</pre></td><th>5.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>输入一串转向指令最后机器人面向： E
+</pre></td><th>5.0</th></tr>
+</table></div>
+<div class="directory" id="directoryID">
+<ul>
+<li><a href="#0">222.204.253.136</a></li>
+<li><a href="#1">222.204.253.142</a></li>
+<li><a href="#2">222.204.253.144</a></li>
+<li><a href="#3">222.204.253.148</a></li>
+<li><a href="#4">222.204.253.150</a></li>
+<li><a href="#5">222.204.253.160</a></li>
+<li><a href="#6">222.204.253.166</a></li>
+<li><a href="#7">222.204.253.168</a></li>
+<li><a href="#8">222.204.253.170</a></li>
+<li><a href="#9">222.204.253.172</a></li>
+<li><a href="#10">222.204.253.174</a></li>
+<li><a href="#11">222.204.253.176</a></li>
+<li><a href="#12">222.204.253.182</a></li>
+<li><a href="#13">222.204.253.188</a></li>
+<li><a href="#14">222.204.253.190</a></li>
+<li><a href="#15">222.204.253.192</a></li>
+<li><a href="#16">222.204.253.196</a></li>
+<li><a href="#17">222.204.253.200</a></li>
+<li><a href="#18">222.204.253.202</a></li>
+<li><a href="#19">222.204.253.210</a></li>
+<li><a href="#20">222.204.253.216</a></li>
+<li><a href="#21">222.204.253.218</a></li>
+<li><a href="#22">222.204.253.230</a></li>
+</ul>
+<pre>
+目录数：29， 文件数：23
+
+缺失 <span class="red">ans42</span> 题目文件的目录：
+<span class="red">222.204.253.152</span>
+<span class="red">222.204.253.154</span>
+<span class="red">222.204.253.164</span>
+<span class="red">222.204.253.208</span>
+<span class="red">222.204.253.214</span>
+<span class="red">222.204.253.234</span>
+</pre>
+</div>
+<div class="stuAnswer" id="stuAnswerID">
+<a name="0"></a>--------------------d:\k1\result_b\222.204.253.136\ans42-10223901053-范思喆.py--------------------
+<pre>ss=input("输入一串转向指令：")
+t=0
+for x in ss:
+    if x=="L":
+        t=t+1
+    if x=="R":
+        t=t-1
+if t-(t//4)*4==0:
+    print("最后机器人面向:E")
+if t-(t//4)*4==1:
+    print("最后机器人面向:N")
+if t-(t//4)*4==2:
+    print("最后机器人面向:W")
+if t-(t//4)*4==3:
+    print("最后机器人面向:S")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>输入一串转向指令：最后机器人面向:W
+</pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>输入一串转向指令：最后机器人面向:N
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>输入一串转向指令：最后机器人面向:S
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>输入一串转向指令：最后机器人面向:E
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="1"></a>--------------------d:\k1\result_b\222.204.253.142\ans42-10223901010-陈小露.py--------------------
+<pre>x=input('输入一串转向指令')
+s,n=1,0
+y=''
+for i in x:
+    if i=='L':
+            s=s+1
+    elif i=='R':
+            s=s+3
+    elif i=='B':
+            s=s+2
+    else:
+            s=s
+n=s%4
+if n==1:
+    y='E'
+elif n==2:
+    y='N'
+elif n==3:
+    y='W'
+else:
+    y='S'
+print('最后机器人面向：{}'.format(y))
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>输入一串转向指令最后机器人面向：W
+</pre></td><th>5.0</th><th rowspan="4" class="red">20.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>输入一串转向指令最后机器人面向：N
+</pre></td><th>5.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>输入一串转向指令最后机器人面向：N
+</pre></td><th>5.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>输入一串转向指令最后机器人面向：E
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="2"></a>--------------------d:\k1\result_b\222.204.253.144\ans42-10223901063-赵锦松.py--------------------
+<pre>ss=input("输入一串转向指令:")
+n=1
+if ss!="":
+    for i in ss:
+        if i=="L":
+            n+=1
+        elif i=="B":
+            n+=2
+        elif i=="R":
+            n+=3
+    if (n+4)%4==1:
+        print("E")
+    elif (n+4)%4==2:
+        print("N")
+    elif (n+4)%4==3:
+        print("W")
+    elif n%4==0:
+        print("S")
+else:
+    print("E")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>输入一串转向指令:W
+</pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>输入一串转向指令:N
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>输入一串转向指令:N
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>输入一串转向指令:E
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="3"></a>--------------------d:\k1\result_b\222.204.253.148\ans42-10223901007-成远菲.py--------------------
+<pre>demand=input('输入一串转向指令')
+countone,counttwo,countthree=0,0,0
+for x in demand:
+     if x=='L':
+          countone+=1
+     if x=='R':
+          counttwo+=3
+     if x=='B':
+          countthree+=2
+     count=countone+counttwo+countthree
+     if count%4==1:
+          a='N'
+     elif count%4==0:
+          a='E'
+     elif count%4==2:
+          a='W'
+     else:
+          a='S'
+print('机器人最后面向:',a)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>输入一串转向指令机器人最后面向: W
+</pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>输入一串转向指令机器人最后面向: N
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>输入一串转向指令机器人最后面向: N
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>输入一串转向指令机器人最后面向: E
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="4"></a>--------------------d:\k1\result_b\222.204.253.150\ans42-10223901021-阙欣余.py--------------------
+<pre>a=input('请输入一串转向指令')
+b=0
+if a=='':
+   print('最后机器人面向：E')
+else:
+    for x in a:
+        if x=='L':
+           b=b+1
+        if x=='R':
+           b=b-1
+        if x=='B':
+           b=b+2
+    if b==2 or b==-2:
+         print('最后机器人朝向：W')
+    elif b%4==0:
+         print('最后机器人朝向：E')
+    elif b==-3 or b==1:
+         print('最后机器人朝向：N')
+    else:
+         print('最后机器人朝向：S')
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>请输入一串转向指令最后机器人朝向：W
+</pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>请输入一串转向指令最后机器人朝向：N
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>请输入一串转向指令最后机器人朝向：N
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>请输入一串转向指令最后机器人朝向：E
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="5"></a>--------------------d:\k1\result_b\222.204.253.160\ans42-10211510020-齐研博.py--------------------
+<pre>Python 3.8.6 (tags/v3.8.6:db45529, Sep 23 2020, 15:52:53) [MSC v.1927 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+&gt;&gt;&gt; E="正东"
+&gt;&gt;&gt; N="正北"
+&gt;&gt;&gt; W="正西"
+&gt;&gt;&gt; S="正南"
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.160\ans42-10211510020-齐研博.py", line 1
+    Python 3.8.6 (tags/v3.8.6:db45529, Sep 23 2020, 15:52:53) [MSC v.1927 64 bit (AMD64)] on win32
+           ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.160\ans42-10211510020-齐研博.py", line 1
+    Python 3.8.6 (tags/v3.8.6:db45529, Sep 23 2020, 15:52:53) [MSC v.1927 64 bit (AMD64)] on win32
+           ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.160\ans42-10211510020-齐研博.py", line 1
+    Python 3.8.6 (tags/v3.8.6:db45529, Sep 23 2020, 15:52:53) [MSC v.1927 64 bit (AMD64)] on win32
+           ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.160\ans42-10211510020-齐研博.py", line 1
+    Python 3.8.6 (tags/v3.8.6:db45529, Sep 23 2020, 15:52:53) [MSC v.1927 64 bit (AMD64)] on win32
+           ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="6"></a>--------------------d:\k1\result_b\222.204.253.166\ans42-10223901034-乔奕璇.py--------------------
+<pre>x=input("输入一串转向指令")
+if x == " ":
+    print("最后机器人面向：E")
+else:
+    n=0
+    for i in x:
+        if i == "R":
+            n=n+1
+        if i == "L":
+            n=n-1
+        if i == "B":
+            n=n+2
+    if n == 0:
+        print("最后机器人面向：E")
+    if n &gt; 0:
+        if n % 3 == 0:
+            print("最后机器人面向：N")
+        elif n % 2 == 0:
+            print("最后机器人面向：W")
+        else:
+            print("最后机器人面向：S")
+    if n &lt; 0:
+        if n % 3 == 0:
+            print("最后机器人面向：S")
+        elif n % 2 == 0:
+            print("最后机器人面向：W")
+        else:
+            print("最后机器人面向：N")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>输入一串转向指令最后机器人面向：W
+</pre></td><th>5.0</th><th rowspan="4" class="red">15.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>输入一串转向指令最后机器人面向：N
+</pre></td><th>5.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>输入一串转向指令最后机器人面向：N
+</pre></td><th>5.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>输入一串转向指令最后机器人面向：W
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="7"></a>--------------------d:\k1\result_b\222.204.253.168\ans42-10223901032-董箬彤.py--------------------
+<pre>x=input("输入一串转向指令")
+if x==" ":
+    print("最后机器人面向： E")
+else:
+    for i in x:
+        y=0
+        if i=="L":
+            i=3
+        elif i=="R":
+            i=1
+        elif i=="B":
+            i=2
+        y += i
+    if y%4==0:
+        print("最后机器人面向： E")
+    elif y%4==1:
+        print("最后机器人面向： S")
+    elif y%4==2:
+        print("最后机器人面向： W")
+    elif y%4==3:
+        print("最后机器人面向： N")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>输入一串转向指令最后机器人面向： N
+</pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>输入一串转向指令最后机器人面向： S
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>输入一串转向指令最后机器人面向： S
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>输入一串转向指令最后机器人面向： N
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="8"></a>--------------------d:\k1\result_b\222.204.253.170\ans42-10223901017-杨清妍.py--------------------
+<pre>x=input('输入一串转向指令')
+x=list(x)
+def :
+   'L'+'R'='O'
+    'L'+'B'='R'
+    'B'+'R'='L'
+    'O'+'L'='L'
+    'O'+'R'='R'
+    'O'+'B'='B'
+Z=sum(x)
+if Z==O:
+    print(E)
+elif Z==B:
+    print(W)
+elif Z==R:
+    print(S)
+elif Z==L:
+    print(N)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.170\ans42-10223901017-杨清妍.py", line 3
+    def :
+        ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.170\ans42-10223901017-杨清妍.py", line 3
+    def :
+        ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.170\ans42-10223901017-杨清妍.py", line 3
+    def :
+        ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.170\ans42-10223901017-杨清妍.py", line 3
+    def :
+        ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="9"></a>--------------------d:\k1\result_b\222.204.253.172\ans42-10223901065-康以清.py--------------------
+<pre>s=input("输入一串转向指令")
+R=-1,L=1,B=a:
+t=sum (s)
+if t&lt;0:
+    print("最后机器人面向：W")
+if t&gt;0:
+    print("最后机器人面向：E")
+if t=a:
+    print("最后机器人面向：S")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.172\ans42-10223901065-康以清.py", line 2
+    R=-1,L=1,B=a:
+      ^
+SyntaxError: cannot assign to operator</span></pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.172\ans42-10223901065-康以清.py", line 2
+    R=-1,L=1,B=a:
+      ^
+SyntaxError: cannot assign to operator</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.172\ans42-10223901065-康以清.py", line 2
+    R=-1,L=1,B=a:
+      ^
+SyntaxError: cannot assign to operator</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.172\ans42-10223901065-康以清.py", line 2
+    R=-1,L=1,B=a:
+      ^
+SyntaxError: cannot assign to operator</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="10"></a>--------------------d:\k1\result_b\222.204.253.174\ans42-10223901004-李可.py--------------------
+<pre>a=input("输入一串转向指令")
+b="ENWS"
+c=0
+for i in a:
+    if i=="L":
+       c+=1
+    elif i=="B":
+        c+=2
+    elif i==" ":
+        c=c
+    else:
+        c-=1
+d=c%4
+print("机器人面向：",b[d])
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>输入一串转向指令机器人面向： W
+</pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>输入一串转向指令机器人面向： N
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>输入一串转向指令机器人面向： N
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>输入一串转向指令机器人面向： E
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="11"></a>--------------------d:\k1\result_b\222.204.253.176\ans42-10223901015-曾林涵.py--------------------
+<pre>x=input('输入一串转向指令')
+a=0
+for i in x:
+    if i=='R':
+        a+=1
+    if i=='L':
+        a-=1
+    if i=='B':
+        a+=2
+
+b=a%4
+if b ==0:
+    print('最后机器人面向：E')
+elif b == 1:
+    print('最后机器人面向：S')
+elif b == 2:
+    print('最后机器人面向：W')
+elif b == 3:
+    print('最后机器人面向：N')
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>输入一串转向指令最后机器人面向：W
+</pre></td><th>5.0</th><th rowspan="4" class="red">20.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>输入一串转向指令最后机器人面向：N
+</pre></td><th>5.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>输入一串转向指令最后机器人面向：N
+</pre></td><th>5.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>输入一串转向指令最后机器人面向：E
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="12"></a>--------------------d:\k1\result_b\222.204.253.182\ans42-10223901028-唐静蕾.py--------------------
+<pre>x=str(input('输入一串转向指令'))
+d=E
+for i in range(x):
+    if i==L:
+        E,N,W,S=N,W,S,E
+    if i==R:
+        E,N,W,S=S,E,N,W
+    if i==B:
+        E,N,W,S=W,S,E,N
+        break
+    print('最后机器人面向：{}'.format(d))
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>输入一串转向指令
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_b\222.204.253.182\ans42-10223901028-唐静蕾.py", line 2, in &lt;module&gt;
+    d=E
+NameError: name 'E' is not defined</span></pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>输入一串转向指令
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_b\222.204.253.182\ans42-10223901028-唐静蕾.py", line 2, in &lt;module&gt;
+    d=E
+NameError: name 'E' is not defined</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>输入一串转向指令
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_b\222.204.253.182\ans42-10223901028-唐静蕾.py", line 2, in &lt;module&gt;
+    d=E
+NameError: name 'E' is not defined</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>输入一串转向指令
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_b\222.204.253.182\ans42-10223901028-唐静蕾.py", line 2, in &lt;module&gt;
+    d=E
+NameError: name 'E' is not defined</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="13"></a>--------------------d:\k1\result_b\222.204.253.188\ans42-10223901025-刘瑜婷.py--------------------
+<pre>a=input()
+j=90
+if a=='':
+    print("E")
+for x in a:
+    if x=='L':
+        j=j-90
+    if x=='R':
+        j=j+90
+    if x=='B':
+        j=j+180
+if j%360==0:
+    print("N")
+else:
+    j=j%360
+    if j==90:
+        print("E")
+    if j==180:
+        print("S")
+    if j==270:
+        print("W")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>W
+</pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>N
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>N
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>E
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="14"></a>--------------------d:\k1\result_b\222.204.253.190\ans42-10223901023-侯婷婷.py--------------------
+<pre>x=input('输入您的指令：')
+a=len(x)
+for i in range(a):
+    if i=='N':
+        s='N'
+    elif i=='R':
+        s='S'
+    else:
+        s='E'
+print('最后机器面向：',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>输入您的指令：最后机器面向： E
+</pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>输入您的指令：最后机器面向： E
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>输入您的指令：最后机器面向： E
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>输入您的指令：最后机器面向： E
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="15"></a>--------------------d:\k1\result_b\222.204.253.192\ans42-10223901011李琪.py--------------------
+<pre>n='E'
+a=input("输入一串转向指令")
+for i in a:
+    if i =='L':
+        n='S'
+    elif i=='R':
+        n='N'
+    elif i=='B':
+        n='W'
+    else:
+        n='E'
+print("最后机器人面向:",n)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>输入一串转向指令最后机器人面向: S
+</pre></td><th>0.0</th><th rowspan="4" class="red">10.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>输入一串转向指令最后机器人面向: N
+</pre></td><th>5.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>输入一串转向指令最后机器人面向: N
+</pre></td><th>5.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>输入一串转向指令最后机器人面向: S
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="16"></a>--------------------d:\k1\result_b\222.204.253.196\ans42-10223901038-马茜.py--------------------
+<pre>n=input("输入一串转向指令")
+if n=="LLR":
+    s="N"
+print("最后机器人面向:{}".format(s))
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>输入一串转向指令
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_b\222.204.253.196\ans42-10223901038-马茜.py", line 4, in &lt;module&gt;
+    print("最后机器人面向:{}".format(s))
+NameError: name 's' is not defined</span></pre></td><th>0.0</th><th rowspan="4" class="red">5.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>输入一串转向指令最后机器人面向:N
+</pre></td><th>5.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>输入一串转向指令
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_b\222.204.253.196\ans42-10223901038-马茜.py", line 4, in &lt;module&gt;
+    print("最后机器人面向:{}".format(s))
+NameError: name 's' is not defined</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>输入一串转向指令
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_b\222.204.253.196\ans42-10223901038-马茜.py", line 4, in &lt;module&gt;
+    print("最后机器人面向:{}".format(s))
+NameError: name 's' is not defined</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="17"></a>--------------------d:\k1\result_b\222.204.253.200\ans42-10223901060-黄璐.py--------------------
+<pre>x=input('输入一串转向指令：')
+for i in x:
+    L,R,B=0,0,0
+    if i==L:
+        L=L+1
+    if i==R:
+        R=R+1
+    if i==B:
+        B=B+1
+d=
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.200\ans42-10223901060-黄璐.py", line 10
+    d= 
+       ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.200\ans42-10223901060-黄璐.py", line 10
+    d= 
+       ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.200\ans42-10223901060-黄璐.py", line 10
+    d= 
+       ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.200\ans42-10223901060-黄璐.py", line 10
+    d= 
+       ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="18"></a>--------------------d:\k1\result_b\222.204.253.202\ans42-10223901039-林珈伊.py--------------------
+<pre>s=input('输入一串转向指令:')
+robot=0
+while True:
+    for i in range(len(s)):
+        x=s[i]
+        if x=='L':
+            robot+=1
+        elif x=='R':
+            robot-=1
+        elif x=='B':
+            robot+=2
+        elif x==' ':
+            robot=robot
+    if robot%4==0:
+        robot='E'
+    elif robot%4==1:
+        robot='N'
+    elif robot%4==2:
+        robot='W'
+    elif robot%4==3:
+        robot='S'
+print('最后机器人面向：{}'.format(robot))
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>输入一串转向指令:
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_b\222.204.253.202\ans42-10223901039-林珈伊.py", line 7, in &lt;module&gt;
+    robot+=1
+TypeError: can only concatenate str (not "int") to str</span></pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>输入一串转向指令:
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_b\222.204.253.202\ans42-10223901039-林珈伊.py", line 7, in &lt;module&gt;
+    robot+=1
+TypeError: can only concatenate str (not "int") to str</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>输入一串转向指令:
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_b\222.204.253.202\ans42-10223901039-林珈伊.py", line 11, in &lt;module&gt;
+    robot+=2
+TypeError: can only concatenate str (not "int") to str</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>输入一串转向指令:
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_b\222.204.253.202\ans42-10223901039-林珈伊.py", line 11, in &lt;module&gt;
+    robot+=2
+TypeError: can only concatenate str (not "int") to str</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="19"></a>--------------------d:\k1\result_b\222.204.253.210\ans42-10223901030-贺敬.py--------------------
+<pre>n=input('请输入一串转向指令')
+s1,s2=0,0
+for i in n:
+    
+    if i=='R':
+        s1=s1+1
+    if i=='L':
+        s2=s2+1
+m=(s1-s2)%4
+if m==0:
+    h='E'
+elif m==1 or m==-3:
+    h='S'
+elif m==2 or m==-2:
+    h='W'
+elif m==3 or m==-1:
+    h='N'
+print('最后机器人面向:',h)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>请输入一串转向指令最后机器人面向: W
+</pre></td><th>5.0</th><th rowspan="4" class="red">15.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>请输入一串转向指令最后机器人面向: N
+</pre></td><th>5.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>请输入一串转向指令最后机器人面向: S
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>请输入一串转向指令最后机器人面向: E
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="20"></a>--------------------d:\k1\result_b\222.204.253.216\ans42-10223901036-宋琰芸.py--------------------
+<pre>#ans42-10223901036-宋琰芸
+a=0
+ss=input("请输入:")
+for i in ss:
+x=0
+ss=input()
+for i in ss:
+    if i="L":
+        X+=3
+    if i="R":
+        x+=1
+    if i="B":
+        x+=2
+if x%4==1:
+    print("S")
+elif x%4==2:
+    print("W")
+elif x%4==3:
+    print("N")
+else:
+    print("E")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.216\ans42-10223901036-宋琰芸.py", line 5
+    x=0
+    ^
+IndentationError: expected an indented block</span></pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.216\ans42-10223901036-宋琰芸.py", line 5
+    x=0
+    ^
+IndentationError: expected an indented block</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.216\ans42-10223901036-宋琰芸.py", line 5
+    x=0
+    ^
+IndentationError: expected an indented block</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.216\ans42-10223901036-宋琰芸.py", line 5
+    x=0
+    ^
+IndentationError: expected an indented block</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="21"></a>--------------------d:\k1\result_b\222.204.253.218\ans42-10223901026-王瑶.py--------------------
+<pre>order=input('输入一串转向指令：')
+count=0
+for i in order:
+    if i=='R':
+        count=count+1
+    if i=='L':
+        count=count-1
+    if i=='B':
+        count=count+2
+if count%4==0:
+    print('最后机器人面向：E')
+if count%4!=0 and count%2==0:
+    print('最后机器人面向：W')
+if count&lt;0 and count%3!=0:
+    print('最后机器人面向：N')
+if count&gt;0 and count%3==0:
+    print('最后机器人面向：N')
+if count&gt;0 and count%3!=0:
+    print('最后机器人面向：S')
+if count&lt;0 and count%3==0:
+    print('最后机器人面向：S')
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>输入一串转向指令：最后机器人面向：W
+最后机器人面向：N
+</pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>输入一串转向指令：最后机器人面向：N
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>输入一串转向指令：最后机器人面向：N
+</pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>输入一串转向指令：最后机器人面向：E
+最后机器人面向：S
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="22"></a>--------------------d:\k1\result_b\222.204.253.230\ans42-10223901043-唐诗然-.py--------------------
+<pre>x=0
+ss=input("请输入:")
+for i in ss:
+    if i="L":
+        x+=3
+    if i="R":
+        x+=1
+    if i="B":
+        x+=2
+if x%4==1:
+    print("S")
+elif x%4==2:
+    print("W")
+elif x%4==3:
+    print("N")
+else:
+    print("E")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>LL
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.230\ans42-10223901043-唐诗然-.py", line 4
+    if i="L":
+        ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th><th rowspan="4" class="red">0.0</th></tr>
+<tr><td><pre>LLR
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.230\ans42-10223901043-唐诗然-.py", line 4
+    if i="L":
+        ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BR
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.230\ans42-10223901043-唐诗然-.py", line 4
+    if i="L":
+        ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th></tr>
+<tr><td><pre>BBRL</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.230\ans42-10223901043-唐诗然-.py", line 4
+    if i="L":
+        ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th></tr>
+</table><hr />耗时：5.16秒</div></body>
+</html>

@@ -1,0 +1,6 @@
+for i in range(1,10):
+    for j in range(1,10):
+        if i>=j:
+            print('{:.1f}*{:.1f}={:.1f}'.format(i,j,i*j),end=' ')
+    if i<j:
+        print('\n')

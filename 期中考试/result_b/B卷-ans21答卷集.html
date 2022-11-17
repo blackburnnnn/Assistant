@@ -1,0 +1,1021 @@
+
+<html>
+<head>
+<meta charset="gbk">
+<title>
+B卷-ans21 答卷集</title>
+<style type="text/css">
+
+table {border-collapse: collapse;}
+body {font-size:100%;}
+
+.red {
+	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+	color: #FF0000;
+}
+th.red {font-family: Verdana;
+        font-size:2em;
+}
+
+pre {
+	font-family: Consolas;
+	line-height: normal;
+	font-size: medium;
+}
+.blue {
+	color: #0000FF;
+    font-weight: bolder;
+    font-size:2em;
+}
+
+ul
+{
+list-style-type:none;
+margin:0;
+padding:0;
+}
+a:link,a:visited
+{
+display:block;
+font-weight:bold;
+color:#000;
+background-color:#FFF;
+width:9em;
+text-align:left;
+padding:4px;
+text-decoration:none;
+text-transform:uppercase;
+}
+a:hover,a:active
+{
+background-color:#cc0000;
+}
+
+.refAnswer {
+	overflow: auto;
+	border: thin solid #023EFF;
+	position: fixed;
+	top: 5px;
+	left: 5px;
+	margin: 0;
+	padding: 5px;
+	height: 32%;
+	width: 48%;
+	resize:both;
+	z-index: 2;
+	background-color: #EAFCFC;
+	/*user-select:none;*/
+}
+
+.refResult {
+	overflow: auto;
+	border: thin solid #023EFF;
+	position: fixed;
+	top: 5px;
+	left: 50%;
+	right: 5px;
+	margin: 0;
+	padding: 5px;
+	height: 32%;
+	resize: vertical;
+	z-index: 1;
+	background-color: #EBF4F9;
+	/*user-select:none;*/
+}
+
+.directory {
+	overflow: auto;
+	border: thin solid #023EFF;
+	position: fixed;
+	top: 35%;
+	left: 5px;
+	margin: 0;
+	padding: 5px;
+	bottom: 5px;
+	width: 12%;
+}
+.stuAnswer {
+	position: fixed;
+	right: 5px;
+	top: 35%;
+	left: 14%;
+	padding: 5px;
+	margin: 0;
+	border: thin solid #023EFF;
+	bottom: 5px;
+	overflow: auto;
+}
+
+.bt {
+	font-size: 20px;
+	box-shadow: 5px 5px 6px #888888;
+	color:red;
+	border:thin;
+	border-radius: 35px;
+	position: fixed;
+	z-index: 3;
+	background-color: #C7E9F4;
+	cursor: pointer;
+	width: 1.5em;
+	text-align: center;
+	user-select:none;
+}
+</style>
+<script>
+var refAnswer,refResult,directory,stuAnswer,exchangeBT;
+upLeftPartHeightNew=upPartHeight=upRightPartHeightNew="32%";
+upLeftPartWidth=upLeftPartWidthNew="48%";
+
+function docOnload(){
+refAnswer=document.getElementById("refAnswerID");
+refResult=document.getElementById("refResultID");
+directory=document.getElementById("directoryID");
+stuAnswer=document.getElementById("stuAnswerID");
+exchangeBT=document.getElementById("exchangeID");
+
+}
+function pullDownUp(bt) {
+	if (refAnswer.style.visibility == "hidden"){
+		directory.style.top='35%';
+		stuAnswer.style.top='35%';
+		refAnswer.style.visibility='visible';
+		refResult.style.visibility='visible';
+		exchangeBT.style.visibility='visible';
+		bt.innerHTML="↑↑";
+	}
+	else{
+		refAnswer.style.visibility='hidden';
+		refResult.style.visibility='hidden';
+		exchangeBT.style.visibility='hidden';
+		directory.style.top="5px";
+		stuAnswer.style.top="5px";
+		bt.innerHTML="↓↓";
+	}
+}
+function pullLeftRight(bt){
+	if (directory.style.visibility=="hidden"){
+		stuAnswer.style.left="14%";
+		directory.style.visibility='visible';
+		bt.innerHTML="←";
+	}
+	else{
+		directory.style.visibility='hidden';
+		stuAnswer.style.left="5px";
+		bt.innerHTML="→";
+		}
+}
+function exchange(bt){
+	var tempStr=refAnswer.innerHTML;
+	refAnswer.innerHTML=refResult.innerHTML;
+	refResult.innerHTML=tempStr;
+}
+function dbClick(div){
+	if (div.id=="refAnswerID"){
+		if (refAnswer.style.width==upLeftPartWidth && refAnswer.style.height==upPartHeight){
+			refAnswer.style.height=upLeftPartHeightNew;
+			refAnswer.style.width=upLeftPartWidthNew;
+		}
+		else{
+			upLeftPartHeightNew=refAnswer.style.height;
+			upLeftPartWidthNew=refAnswer.style.width;
+			refAnswer.style.height=upPartHeight;
+			refAnswer.style.width=upLeftPartWidth;
+		}
+	}
+	else{
+		if (refResult.style.height==upPartHeight){
+			refResult.style.height=upRightPartHeightNew;
+		}
+		else{
+			upRightPartHeightNew=refResult.style.height;
+			refResult.style.height=upPartHeight;
+		}
+	}
+}
+</script>
+</head>
+<body onLoad="docOnload()">
+<span class="bt" style="top:0;left:48.5%;" onClick="pullDownUp(this)">↑↑</span>
+<span class="bt" style="top:33%;left:0;" onClick="pullLeftRight(this)">←</span>
+<span class="bt" id="exchangeID" style="top:0;left:0;" onClick="exchange(this)">换</span>
+<div class="refAnswer" id="refAnswerID" onDblClick="dbClick(this)"><pre>#ans21答案.py
+#注释
+s=0 #累加器置零
+for i in range(1,8):#  8 :
+    x=int(input('请输入需要累加的整数：'))#  int
+    s+=x
+print('sum=',s)
+</pre></div>
+<div class="refResult" id="refResultID" onDblClick="dbClick(this)">
+<table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>分数</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="blue">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table></div>
+<div class="directory" id="directoryID">
+<ul>
+<li><a href="#0">222.204.253.136</a></li>
+<li><a href="#1">222.204.253.142</a></li>
+<li><a href="#2">222.204.253.144</a></li>
+<li><a href="#3">222.204.253.148</a></li>
+<li><a href="#4">222.204.253.150</a></li>
+<li><a href="#5">222.204.253.152</a></li>
+<li><a href="#6">222.204.253.154</a></li>
+<li><a href="#7">222.204.253.160</a></li>
+<li><a href="#8">222.204.253.164</a></li>
+<li><a href="#9">222.204.253.166</a></li>
+<li><a href="#10">222.204.253.168</a></li>
+<li><a href="#11">222.204.253.170</a></li>
+<li><a href="#12">222.204.253.172</a></li>
+<li><a href="#13">222.204.253.174</a></li>
+<li><a href="#14">222.204.253.176</a></li>
+<li><a href="#15">222.204.253.182</a></li>
+<li><a href="#16">222.204.253.188</a></li>
+<li><a href="#17">222.204.253.190</a></li>
+<li><a href="#18">222.204.253.192</a></li>
+<li><a href="#19">222.204.253.196</a></li>
+<li><a href="#20">222.204.253.200</a></li>
+<li><a href="#21">222.204.253.202</a></li>
+<li><a href="#22">222.204.253.208</a></li>
+<li><a href="#23">222.204.253.210</a></li>
+<li><a href="#24">222.204.253.214</a></li>
+<li><a href="#25">222.204.253.218</a></li>
+<li><a href="#26">222.204.253.230</a></li>
+<li><a href="#27">222.204.253.234</a></li>
+</ul>
+<pre>
+目录数：29， 文件数：28
+
+缺失 <span class="red">ans21</span> 题目文件的目录：
+<span class="red">222.204.253.216</span>
+</pre>
+</div>
+<div class="stuAnswer" id="stuAnswerID">
+<a name="0"></a>--------------------d:\k1\result_b\222.204.253.136\ans21-10223901053-范思喆.py--------------------
+<pre>#bug1.py 10223901053 范思喆
+s=0
+for i in range(0,7):
+        x=input('请输入需要累加的整数：')
+        s=s+int(x)
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="1"></a>--------------------d:\k1\result_b\222.204.253.142\ans21-10223901010-陈小露.py--------------------
+<pre>#bug1.py
+s=0#10223901010 陈小露
+for i in range(7):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="2"></a>--------------------d:\k1\result_b\222.204.253.144\ans21-10223901063-赵锦松.py--------------------
+<pre>#10223901063 赵锦松
+s=0
+for i in range(1,8):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="3"></a>--------------------d:\k1\result_b\222.204.253.148\ans21-10223901007-成远菲.py--------------------
+<pre>#bug1.py
+s=0
+for i in range(1,8):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="4"></a>--------------------d:\k1\result_b\222.204.253.150\ans21-10223901021-阙欣余.py--------------------
+<pre>#bug1.py 10223901021-阙欣余
+s=0
+for i in range(1,8)：
+        x=input('请输入需要累加的整数：')
+        s=x+s
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.150\ans21-10223901021-阙欣余.py", line 3
+    for i in range(1,8)：
+                       ^
+SyntaxError: invalid character '：' (U+FF1A)</span></pre></td><th>0.0</th><th rowspan="2" class="red">0.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.150\ans21-10223901021-阙欣余.py", line 3
+    for i in range(1,8)：
+                       ^
+SyntaxError: invalid character '：' (U+FF1A)</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="5"></a>--------------------d:\k1\result_b\222.204.253.152\ans21-10223901003-李慧.py--------------------
+<pre>#bug1.py 10223901003 李慧
+s=0
+for i in range(1,8):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="6"></a>--------------------d:\k1\result_b\222.204.253.154\ans21-10223901020-陈靖.py--------------------
+<pre>#bug1.py  10223901020陈靖
+s=0
+for i in range(1,8):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="7"></a>--------------------d:\k1\result_b\222.204.253.160\ans21-10211510020-齐研博.py--------------------
+<pre>#10211510020齐研博
+s,i=0,1
+for i in range(1,8):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+        i+=1
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="8"></a>--------------------d:\k1\result_b\222.204.253.164\ans21-10223901052-陈佳南.py--------------------
+<pre>s=0
+for i in range(1,8):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="9"></a>--------------------d:\k1\result_b\222.204.253.166\ans21-10223901034-乔奕璇.py--------------------
+<pre>#bug1.py  #10223901034 乔奕璇
+s=0
+for i in range(1,8):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="10"></a>--------------------d:\k1\result_b\222.204.253.168\ans21-10223901032-董箬彤.py--------------------
+<pre>#bug1.py 10223901032 董箬彤
+s=0
+for i in range(0,7):
+        x=int(input('请输入需要累加的整数：'))
+        s +=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="11"></a>--------------------d:\k1\result_b\222.204.253.170\ans21-10223901017-杨清妍.py--------------------
+<pre>#10223901017  杨清妍
+s=0
+for i in range(0,7):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="12"></a>--------------------d:\k1\result_b\222.204.253.172\ans21-10223901065-康以清.py--------------------
+<pre>#10223901065 康以清
+s=0
+for i in range(1,7):
+        x=input('请输入需要累加的整数：')
+        s+=x
+        int(s)
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_b\222.204.253.172\ans21-10223901065-康以清.py", line 5, in &lt;module&gt;
+    s+=x
+TypeError: unsupported operand type(s) for +=: 'int' and 'str'</span></pre></td><th>0.0</th><th rowspan="2" class="red">0.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_b\222.204.253.172\ans21-10223901065-康以清.py", line 5, in &lt;module&gt;
+    s+=x
+TypeError: unsupported operand type(s) for +=: 'int' and 'str'</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="13"></a>--------------------d:\k1\result_b\222.204.253.174\ans21-10223901004-李可.py--------------------
+<pre>#bug1.py 李可10223901004
+s=0
+for i in range(0,7):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="14"></a>--------------------d:\k1\result_b\222.204.253.176\ans21-10223901015-曾林涵.py--------------------
+<pre>#10223901015 曾林涵
+s=0
+for i in range(1,8):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="15"></a>--------------------d:\k1\result_b\222.204.253.182\ans21-10223901028-唐静蕾.py--------------------
+<pre>#bug1.py
+#10223901028唐静蕾
+s=0
+for i in range(1,8):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',int(s))
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="16"></a>--------------------d:\k1\result_b\222.204.253.188\ans21-10223901025-刘瑜婷.py--------------------
+<pre>#bug1.py10223901025刘瑜婷
+s=0
+for i in range(1,8):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="17"></a>--------------------d:\k1\result_b\222.204.253.190\ans21-10223901023-侯婷婷.py--------------------
+<pre>#bug1.py #10223901023-侯婷婷
+s=0
+for i in range(7):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="18"></a>--------------------d:\k1\result_b\222.204.253.192\ans21-10223901011-李琪.py--------------------
+<pre>#10223901011李琪
+s=0
+for i in range(1,8):
+          x=int(input('请输入需要累加的整数：'))
+          s+=x
+print('sum=',s)
+5
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="19"></a>--------------------d:\k1\result_b\222.204.253.196\ans21-10223901038-马茜.py--------------------
+<pre>#学号:10223901038,姓名:马茜
+s=0
+for i in range(1,8):
+        x=input('请输入需要累加的整数：')
+        s=s+int(x)
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="20"></a>--------------------d:\k1\result_b\222.204.253.200\ans21-10223901060-黄璐.py--------------------
+<pre>#bug1.py
+#10223901060黄璐
+s=0
+for i in range(1,8):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="21"></a>--------------------d:\k1\result_b\222.204.253.202\ans21-10223901039-林珈伊.py--------------------
+<pre>#bug1.py 10223901039 林珈伊
+s=0
+for i in range(0,7):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="22"></a>--------------------d:\k1\result_b\222.204.253.208\ans21-10223901041-谢瀚羲.py--------------------
+<pre>#10223901041 谢瀚羲
+s=0
+for i in range(1,7):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 37
+</pre></td><th>0.0</th><th rowspan="2" class="red">0.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 0
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="23"></a>--------------------d:\k1\result_b\222.204.253.210\ans21-10223901030-贺敬.py--------------------
+<pre>#10223901030，贺敬
+#bug1.py
+s=0
+for i in range(1,8):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="24"></a>--------------------d:\k1\result_b\222.204.253.214\ans21-10223901006-刘宇弛.py--------------------
+<pre>#bug1.py   10223901006 刘宇弛
+s=0
+for i in range(1,7)：
+        x=input('请输入需要累加的整数：')
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.214\ans21-10223901006-刘宇弛.py", line 3
+    for i in range(1,7)：
+                       ^
+SyntaxError: invalid character '：' (U+FF1A)</span></pre></td><th>0.0</th><th rowspan="2" class="red">0.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.214\ans21-10223901006-刘宇弛.py", line 3
+    for i in range(1,7)：
+                       ^
+SyntaxError: invalid character '：' (U+FF1A)</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="25"></a>--------------------d:\k1\result_b\222.204.253.218\ans21-10223901026-王瑶.py--------------------
+<pre>#bug1.py
+s=0
+for i in range(1,8):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="26"></a>--------------------d:\k1\result_b\222.204.253.230\ans21 10223901043 唐诗然.py--------------------
+<pre>Python 3.8.6 (tags/v3.8.6:db45529, Sep 23 2020, 15:52:53) [MSC v.1927 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+&gt;&gt;&gt; 5
+5
+&gt;&gt;&gt; 6
+6
+&gt;&gt;&gt; 7
+7
+&gt;&gt;&gt; 8
+8
+&gt;&gt;&gt; 9
+9
+&gt;&gt;&gt; 2
+2
+&gt;&gt;&gt; 6
+6
+&gt;&gt;&gt; 
+&gt;&gt;&gt; 
+&gt;&gt;&gt; 
+======================= RESTART: C:\ecnu_ks\root\bug1.py =======================
+请输入需要累加的整数：5
+请输入需要累加的整数：6
+请输入需要累加的整数：7
+请输入需要累加的整数：8
+请输入需要累加的整数：9
+请输入需要累加的整数：2
+请输入需要累加的整数：6
+sum= 43
+&gt;&gt;&gt;
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.230\ans21 10223901043 唐诗然.py", line 1
+    Python 3.8.6 (tags/v3.8.6:db45529, Sep 23 2020, 15:52:53) [MSC v.1927 64 bit (AMD64)] on win32
+           ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th><th rowspan="2" class="red">0.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_b\222.204.253.230\ans21 10223901043 唐诗然.py", line 1
+    Python 3.8.6 (tags/v3.8.6:db45529, Sep 23 2020, 15:52:53) [MSC v.1927 64 bit (AMD64)] on win32
+           ^
+SyntaxError: invalid syntax</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="27"></a>--------------------d:\k1\result_b\222.204.253.234\ans21-10223901037-苏星宇.py--------------------
+<pre>#10223901037 苏星宇
+s=0
+for i in range(1,8):
+        x=int(input('请输入需要累加的整数：'))
+        s+=x
+print('sum=',s)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>5
+6
+7
+8
+9
+2
+6
+</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 43
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>0
+0
+0
+0
+0
+0
+1</pre></td><td><pre>请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：请输入需要累加的整数：sum= 1
+</pre></td><th>5.0</th></tr>
+</table><hr />耗时：3.15秒</div></body>
+</html>

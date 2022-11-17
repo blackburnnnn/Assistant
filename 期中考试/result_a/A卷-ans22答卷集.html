@@ -1,0 +1,1136 @@
+
+<html>
+<head>
+<meta charset="gbk">
+<title>
+A卷-ans22 答卷集</title>
+<style type="text/css">
+
+table {border-collapse: collapse;}
+body {font-size:100%;}
+
+.red {
+	font-family: Consolas, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", Monaco, "Courier New", monospace;
+	color: #FF0000;
+}
+th.red {font-family: Verdana;
+        font-size:2em;
+}
+
+pre {
+	font-family: Consolas;
+	line-height: normal;
+	font-size: medium;
+}
+.blue {
+	color: #0000FF;
+    font-weight: bolder;
+    font-size:2em;
+}
+
+ul
+{
+list-style-type:none;
+margin:0;
+padding:0;
+}
+a:link,a:visited
+{
+display:block;
+font-weight:bold;
+color:#000;
+background-color:#FFF;
+width:9em;
+text-align:left;
+padding:4px;
+text-decoration:none;
+text-transform:uppercase;
+}
+a:hover,a:active
+{
+background-color:#cc0000;
+}
+
+.refAnswer {
+	overflow: auto;
+	border: thin solid #023EFF;
+	position: fixed;
+	top: 5px;
+	left: 5px;
+	margin: 0;
+	padding: 5px;
+	height: 32%;
+	width: 48%;
+	resize:both;
+	z-index: 2;
+	background-color: #EAFCFC;
+	/*user-select:none;*/
+}
+
+.refResult {
+	overflow: auto;
+	border: thin solid #023EFF;
+	position: fixed;
+	top: 5px;
+	left: 50%;
+	right: 5px;
+	margin: 0;
+	padding: 5px;
+	height: 32%;
+	resize: vertical;
+	z-index: 1;
+	background-color: #EBF4F9;
+	/*user-select:none;*/
+}
+
+.directory {
+	overflow: auto;
+	border: thin solid #023EFF;
+	position: fixed;
+	top: 35%;
+	left: 5px;
+	margin: 0;
+	padding: 5px;
+	bottom: 5px;
+	width: 12%;
+}
+.stuAnswer {
+	position: fixed;
+	right: 5px;
+	top: 35%;
+	left: 14%;
+	padding: 5px;
+	margin: 0;
+	border: thin solid #023EFF;
+	bottom: 5px;
+	overflow: auto;
+}
+
+.bt {
+	font-size: 20px;
+	box-shadow: 5px 5px 6px #888888;
+	color:red;
+	border:thin;
+	border-radius: 35px;
+	position: fixed;
+	z-index: 3;
+	background-color: #C7E9F4;
+	cursor: pointer;
+	width: 1.5em;
+	text-align: center;
+	user-select:none;
+}
+</style>
+<script>
+var refAnswer,refResult,directory,stuAnswer,exchangeBT;
+upLeftPartHeightNew=upPartHeight=upRightPartHeightNew="32%";
+upLeftPartWidth=upLeftPartWidthNew="48%";
+
+function docOnload(){
+refAnswer=document.getElementById("refAnswerID");
+refResult=document.getElementById("refResultID");
+directory=document.getElementById("directoryID");
+stuAnswer=document.getElementById("stuAnswerID");
+exchangeBT=document.getElementById("exchangeID");
+
+}
+function pullDownUp(bt) {
+	if (refAnswer.style.visibility == "hidden"){
+		directory.style.top='35%';
+		stuAnswer.style.top='35%';
+		refAnswer.style.visibility='visible';
+		refResult.style.visibility='visible';
+		exchangeBT.style.visibility='visible';
+		bt.innerHTML="↑↑";
+	}
+	else{
+		refAnswer.style.visibility='hidden';
+		refResult.style.visibility='hidden';
+		exchangeBT.style.visibility='hidden';
+		directory.style.top="5px";
+		stuAnswer.style.top="5px";
+		bt.innerHTML="↓↓";
+	}
+}
+function pullLeftRight(bt){
+	if (directory.style.visibility=="hidden"){
+		stuAnswer.style.left="14%";
+		directory.style.visibility='visible';
+		bt.innerHTML="←";
+	}
+	else{
+		directory.style.visibility='hidden';
+		stuAnswer.style.left="5px";
+		bt.innerHTML="→";
+		}
+}
+function exchange(bt){
+	var tempStr=refAnswer.innerHTML;
+	refAnswer.innerHTML=refResult.innerHTML;
+	refResult.innerHTML=tempStr;
+}
+function dbClick(div){
+	if (div.id=="refAnswerID"){
+		if (refAnswer.style.width==upLeftPartWidth && refAnswer.style.height==upPartHeight){
+			refAnswer.style.height=upLeftPartHeightNew;
+			refAnswer.style.width=upLeftPartWidthNew;
+		}
+		else{
+			upLeftPartHeightNew=refAnswer.style.height;
+			upLeftPartWidthNew=refAnswer.style.width;
+			refAnswer.style.height=upPartHeight;
+			refAnswer.style.width=upLeftPartWidth;
+		}
+	}
+	else{
+		if (refResult.style.height==upPartHeight){
+			refResult.style.height=upRightPartHeightNew;
+		}
+		else{
+			upRightPartHeightNew=refResult.style.height;
+			refResult.style.height=upPartHeight;
+		}
+	}
+}
+</script>
+</head>
+<body onLoad="docOnload()">
+<span class="bt" style="top:0;left:48.5%;" onClick="pullDownUp(this)">↑↑</span>
+<span class="bt" style="top:33%;left:0;" onClick="pullLeftRight(this)">←</span>
+<span class="bt" id="exchangeID" style="top:0;left:0;" onClick="exchange(this)">换</span>
+<div class="refAnswer" id="refAnswerID" onDblClick="dbClick(this)"><pre>#ans22答案.py
+ss=input("请输入字符串:")
+while ss != 'stop':      
+    upper,lower,digit=0,0,0    
+    for x in ss:        # ss
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit(): # x.isdigit()
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0: # 缩进
+        print('存在')     
+    ss=input("请输入字符串:")
+</pre></div>
+<div class="refResult" id="refResultID" onDblClick="dbClick(this)">
+<table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>分数</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:请输入字符串:
+</pre></td><th>5.0</th><th rowspan="2" class="blue">10.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table></div>
+<div class="directory" id="directoryID">
+<ul>
+<li><a href="#0">222.204.253.135</a></li>
+<li><a href="#1">222.204.253.137</a></li>
+<li><a href="#2">222.204.253.141</a></li>
+<li><a href="#3">222.204.253.143</a></li>
+<li><a href="#4">222.204.253.145</a></li>
+<li><a href="#5">222.204.253.149</a></li>
+<li><a href="#6">222.204.253.153</a></li>
+<li><a href="#7">222.204.253.157</a></li>
+<li><a href="#8">222.204.253.165</a></li>
+<li><a href="#9">222.204.253.169</a></li>
+<li><a href="#10">222.204.253.173</a></li>
+<li><a href="#11">222.204.253.175</a></li>
+<li><a href="#12">222.204.253.177</a></li>
+<li><a href="#13">222.204.253.179</a></li>
+<li><a href="#14">222.204.253.183</a></li>
+<li><a href="#15">222.204.253.189</a></li>
+<li><a href="#16">222.204.253.191</a></li>
+<li><a href="#17">222.204.253.199</a></li>
+<li><a href="#18">222.204.253.201</a></li>
+<li><a href="#19">222.204.253.201</a></li>
+<li><a href="#20">222.204.253.203</a></li>
+<li><a href="#21">222.204.253.205</a></li>
+<li><a href="#22">222.204.253.209</a></li>
+<li><a href="#23">222.204.253.211</a></li>
+<li><a href="#24">222.204.253.213</a></li>
+<li><a href="#25">222.204.253.217</a></li>
+<li><a href="#26">222.204.253.231</a></li>
+<li><a href="#27">222.204.253.235</a></li>
+<li><a href="#28">222.204.253.245</a></li>
+</ul>
+<pre>
+目录数：29， 文件数：29
+
+缺失 <span class="red">ans22</span> 题目文件的目录：
+<span class="red">222.204.253.195</span>
+</pre>
+</div>
+<div class="stuAnswer" id="stuAnswerID">
+<a name="0"></a>--------------------d:\k1\result_a\222.204.253.135\ans22-10223901002-黄妮.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+        if upper&gt;0 and lower&gt;0 and digit&gt;0:
+            print('存在')
+            break
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:请输入字符串:
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="1"></a>--------------------d:\k1\result_a\222.204.253.137\ans22——10223901035-杨润平.py--------------------
+<pre>#10223901035 杨润平
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+    if upper&gt;0 or lower&gt;0 or digit&gt;0: 
+                print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:存在
+请输入字符串:
+</pre></td><th>0.0</th><th rowspan="2" class="red">0.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:存在
+请输入字符串:存在
+请输入字符串:存在
+请输入字符串:
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="2"></a>--------------------d:\k1\result_a\222.204.253.141\ans22-10223901009-付湘云.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+        if upper&gt;0 and lower&gt;0 and digit&gt;0:
+            print('存在')
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+存在
+存在
+存在
+请输入字符串:请输入字符串:
+</pre></td><th>0.0</th><th rowspan="2" class="red">5.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="3"></a>--------------------d:\k1\result_a\222.204.253.143\ans22-10223901066-陈旭阳.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss:
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+        print('存在')
+    ss=input("请输入字符串:")
+else:
+    exit(0)
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:请输入字符串:
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="4"></a>--------------------d:\k1\result_a\222.204.253.145\ans22-10223901058-白依媛.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0
+    if ss=='stop':
+        break
+    for x in ss:
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0:
+            print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:请输入字符串:
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="5"></a>--------------------d:\k1\result_a\222.204.253.149\ans22-10223901008-肖茜.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        elif x.islower():
+            lower=lower+1
+        elif x.isdigit():
+            digit=digit+1
+        if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+            print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+存在
+存在
+存在
+请输入字符串:请输入字符串:
+</pre></td><th>0.0</th><th rowspan="2" class="red">5.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="6"></a>--------------------d:\k1\result_a\222.204.253.153\ans22-10223901018-包娴.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in range(ss): 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if isdigit(x):
+            digit=digit+1
+        if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+            print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_a\222.204.253.153\ans22-10223901018-包娴.py", line 5, in &lt;module&gt;
+    for x in range(ss): 
+TypeError: 'str' object cannot be interpreted as an integer</span></pre></td><th>0.0</th><th rowspan="2" class="red">0.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_a\222.204.253.153\ans22-10223901018-包娴.py", line 5, in &lt;module&gt;
+    for x in range(ss): 
+TypeError: 'str' object cannot be interpreted as an integer</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="7"></a>--------------------d:\k1\result_a\222.204.253.157\ans22-10223901029-王菲.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+        if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+            print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+存在
+存在
+存在
+请输入字符串:请输入字符串:
+</pre></td><th>0.0</th><th rowspan="2" class="red">5.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="8"></a>--------------------d:\k1\result_a\222.204.253.165\ans22-10223901064-顾彦非.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit:
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+            print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:请输入字符串:
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="9"></a>--------------------d:\k1\result_a\222.204.253.169\ans22-10223901016-齐偞彤.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+            print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:请输入字符串:
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="10"></a>--------------------d:\k1\result_a\222.204.253.173\ans22-10223901031-陈香伶.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+         print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:请输入字符串:
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="11"></a>--------------------d:\k1\result_a\222.204.253.175\ans22-10223901014-程晋鄂.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+         print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:请输入字符串:
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="12"></a>--------------------d:\k1\result_a\222.204.253.177\ans22-10223901022-李书涵.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in str(ss): 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+        if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+            print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+存在
+存在
+存在
+请输入字符串:请输入字符串:
+</pre></td><th>0.0</th><th rowspan="2" class="red">5.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="13"></a>--------------------d:\k1\result_a\222.204.253.179\ans22-10223901055-李嘉怡.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+        print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:请输入字符串:
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="14"></a>--------------------d:\k1\result_a\222.204.253.183\ans22-10223901013-潘金羽.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in 'ss': 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+        print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>0.0</th><th rowspan="2" class="red">5.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="15"></a>--------------------d:\k1\result_a\222.204.253.189\ans22-10223901024-韦昌春.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0:
+            print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:请输入字符串:
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="16"></a>--------------------d:\k1\result_a\222.204.253.191\ans22-10223901012-李亚楠.py--------------------
+<pre>#10223901012 李亚楠
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in range(int(ss)):
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit(x):
+            digit=digit+1
+        if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+            print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_a\222.204.253.191\ans22-10223901012-李亚楠.py", line 5, in &lt;module&gt;
+    for x in range(int(ss)):
+ValueError: invalid literal for int() with base 10: 'TFTfadskfj7687'</span></pre></td><th>0.0</th><th rowspan="2" class="red">0.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_a\222.204.253.191\ans22-10223901012-李亚楠.py", line 5, in &lt;module&gt;
+    for x in range(int(ss)):
+ValueError: invalid literal for int() with base 10: 'aaaaa'</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="17"></a>--------------------d:\k1\result_a\222.204.253.199\ans22-10223901019-李昊明.py--------------------
+<pre>ss=input("请输入字符串:")
+while ss == 'stop':
+    break
+else:
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper(): 
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+        if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+            print('存在')
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+存在
+存在
+存在
+请输入字符串:
+</pre></td><th>0.0</th><th rowspan="2" class="red">0.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="18"></a>--------------------d:\k1\result_a\222.204.253.201\ans22-10223901040-王瑶.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0:
+            print('存在')
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:请输入字符串:
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="19"></a>--------------------d:\k1\result_a\222.204.253.201\ans22.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+upper,lower,digit=0,0,0 
+while ss!="stop":
+    for x in ss:
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+        if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+            print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+存在
+存在
+存在
+请输入字符串:存在
+存在
+存在
+存在
+存在
+存在
+存在
+请输入字符串:
+</pre></td><th>0.0</th><th rowspan="2" class="red">0.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:存在
+存在
+存在
+存在
+存在
+请输入字符串:
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="20"></a>--------------------d:\k1\result_a\222.204.253.203\ans22-10223901059-陈鋆.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+        if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+            print('存在')     
+    ss=input("请输入字符串:")
+else:
+    print('程序结束')
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+存在
+存在
+存在
+请输入字符串:请输入字符串:程序结束
+</pre></td><th>0.0</th><th rowspan="2" class="red">0.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:程序结束
+</pre></td><th>0.0</th></tr>
+</table><hr /><a name="21"></a>--------------------d:\k1\result_a\222.204.253.205\ans22-10223901047-韩宇航-py.py--------------------
+<pre>#10223901047 韩宇航
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0
+    q=len(ss)
+    x=ss
+    for i in range(q):
+        if x.isupper():   
+            upper=upper+1
+        elif x.islower():
+            lower=lower+1
+        elif x.isdigit():
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0:
+        print('存在')
+        break
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>0.0</th><th rowspan="2" class="red">5.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="22"></a>--------------------d:\k1\result_a\222.204.253.209\ans22-10223901033-王荏民.py--------------------
+<pre>#王荏民10223901033.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    int(upper),int(lower),int(digit)=0,0,0
+    for x in range(ss): 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+        if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+            print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_a\222.204.253.209\ans22-10223901033-王荏民.py", line 4
+    int(upper),int(lower),int(digit)=0,0,0
+    ^
+SyntaxError: cannot assign to function call</span></pre></td><th>0.0</th><th rowspan="2" class="red">0.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>
+<span class="red">  File "d:\k1\result_a\222.204.253.209\ans22-10223901033-王荏民.py", line 4
+    int(upper),int(lower),int(digit)=0,0,0
+    ^
+SyntaxError: cannot assign to function call</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="23"></a>--------------------d:\k1\result_a\222.204.253.211\ans22-10223901027-罗玉崧.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+            print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:请输入字符串:
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="24"></a>--------------------d:\k1\result_a\222.204.253.213\ans22-10223901001-张林周鑫.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+            print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:请输入字符串:
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="25"></a>--------------------d:\k1\result_a\222.204.253.217\ans22-10223901005-曾月怡.py--------------------
+<pre>#10223901005 曾月怡
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if isdigit(x):
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+            print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_a\222.204.253.217\ans22-10223901005-曾月怡.py", line 10, in &lt;module&gt;
+    if isdigit(x):
+NameError: name 'isdigit' is not defined</span></pre></td><th>0.0</th><th rowspan="2" class="red">0.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:
+<span class="red">Traceback (most recent call last):
+  File "d:\k1\result_a\222.204.253.217\ans22-10223901005-曾月怡.py", line 10, in &lt;module&gt;
+    if isdigit(x):
+NameError: name 'isdigit' is not defined</span></pre></td><th>0.0</th></tr>
+</table><hr /><a name="26"></a>--------------------d:\k1\result_a\222.204.253.231\ans22-10223901042-张铖.py--------------------
+<pre>#bug2.py
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+         print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:请输入字符串:
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="27"></a>--------------------d:\k1\result_a\222.204.253.235\ans22-10223901044=李闻博.py--------------------
+<pre>#10223901044 李闻博
+ss=input("请输入字符串:")
+while ss != 'stop':  
+    upper,lower,digit=0,0,0    
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+    if upper&gt;0 and lower&gt;0 and digit&gt;0:
+            print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+请输入字符串:请输入字符串:
+</pre></td><th>5.0</th><th rowspan="2" class="red">10.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:请输入字符串:
+</pre></td><th>5.0</th></tr>
+</table><hr /><a name="28"></a>--------------------d:\k1\result_a\222.204.253.245\ans22-10223901045-何熙嘉.py--------------------
+<pre>#bug2.py
+import string
+ss=input("请输入字符串:")
+upper,lower,digit=0,0,0
+while ss != 'stop':      
+    for x in ss: 
+        if x.isupper():   
+            upper=upper+1
+        if x.islower():
+            lower=lower+1
+        if x.isdigit():
+            digit=digit+1
+        if upper&gt;0 and lower&gt;0 and digit&gt;0: 
+             print('存在')     
+    ss=input("请输入字符串:")
+</pre><table width="100%" border="1"><tr><th>输入</th><th>运行结果（普通）</th><th>得分</th><th>小计</th></tr>
+<tr><td><pre>TFTfadskfj7687
+dsuhf34
+stop
+</pre></td><td><pre>请输入字符串:存在
+存在
+存在
+存在
+请输入字符串:存在
+存在
+存在
+存在
+存在
+存在
+存在
+请输入字符串:
+</pre></td><th>0.0</th><th rowspan="2" class="red">0.0</th></tr>
+<tr><td><pre>aaaaa
+TTTTT
+11111
+stop</pre></td><td><pre>请输入字符串:请输入字符串:请输入字符串:存在
+存在
+存在
+存在
+存在
+请输入字符串:
+</pre></td><th>0.0</th></tr>
+</table><hr />耗时：3.25秒</div></body>
+</html>
